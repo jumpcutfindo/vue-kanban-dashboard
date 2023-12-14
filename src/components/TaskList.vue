@@ -26,7 +26,10 @@ function onRemoveTaskFromList(task) {
 
 <template>
   <div class="flex flex-col w-full space-y-2">
-    <h2 class="font-xl">{{ groupName }}</h2>
+    <div className="flex flex-row w-100">
+      <h2 class="font-xl">{{ groupName }}</h2>
+      <div class="flex flex-grow justify-end">{{ modelValue.length }}</div>
+    </div>
     <div class="flex-grow bg-gray-200 rounded p-2 space-y-2">
       <Task
         v-bind:key="task.name"
