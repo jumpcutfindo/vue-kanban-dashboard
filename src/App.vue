@@ -1,6 +1,12 @@
 <script setup>
+import KanbanBoard from './components/KanbanBoard.vue';
+
 </script>
 
 <template>
-  <div class="text-green-700 text-xl">Hello, from TailwindCSS!</div>
+  <div class="max-w-screen-lg flex justify-center mx-auto min-h-screen py-32">
+    <div class="min-w-full">
+      <KanbanBoard />
+    </div>
+  </div>
 </template>
