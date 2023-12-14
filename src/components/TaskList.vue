@@ -1,7 +1,7 @@
 <script setup>
 import Task from "./Task.vue";
 
-defineProps(["groupName", "tasks"]);
+const props = defineProps(["groupName", "groupsLength", "tasks"]);
 </script>
 
 <template>
@@ -12,6 +12,8 @@ defineProps(["groupName", "tasks"]);
         v-bind:key="task.name"
         v-for="task of tasks"
         :taskName="task.name"
+        :groupId="task.groupId"
+        :groupLength="props.groupsLength"
       ></Task>
     </div>
   </div>

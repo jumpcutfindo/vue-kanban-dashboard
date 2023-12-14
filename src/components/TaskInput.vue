@@ -21,7 +21,7 @@ function submitForm(event) {
     />
     <button
       type="submit"
-      class="bg-blue-500 text-white py-1 px-2 rounded focus:outline-none"
+      class="bg-blue-500 text-white py-1 px-2 rounded focus:outline-none text-sm"
     >
       Add Task
     </button>

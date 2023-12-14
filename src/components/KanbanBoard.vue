@@ -6,6 +6,7 @@ import TaskList from "./TaskList.vue";
 const tasks = reactive([
   { groupId: 0, name: "Buy groceries for the team" },
   { groupId: 1, name: "Review Starfield on Steam" },
+  { groupId: 3, name: "Cook lunch for dinner" },
 ]);
 
 const groups = ref([
@@ -16,7 +17,6 @@ const groups = ref([
 ]);
 
 function addTask(task) {
-  console.log(task);
   tasks.push({ groupId: 0, name: task });
 }
 </script>
@@ -34,6 +34,7 @@ function addTask(task) {
         v-bind:key="group.id"
         v-for="group in groups"
         :group-name="group.name"
+        :groups-length="groups.length"
         :tasks="tasks.filter((t) => t.groupId === group.id)"
       />
     </div>
