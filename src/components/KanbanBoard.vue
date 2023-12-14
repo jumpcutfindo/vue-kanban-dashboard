@@ -26,6 +26,7 @@ const groups = ref([
     </div>
     <div class="flex flex-row flex-grow min-w-full justify-between space-x-4">
       <TaskList
+        v-bind:key="group.id"
         v-for="group in groups"
         :group-name="group.name"
         :tasks="tasks.filter((t) => t.groupId === group.id)"
