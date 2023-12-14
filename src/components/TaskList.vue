@@ -7,6 +7,7 @@ const props = defineProps([
   "groupName",
   "groupsLength",
   "onMoveTask",
+  "onRemoveTask",
 ]);
 const emits = defineEmits(["update:modelValue"]);
 
@@ -16,6 +17,10 @@ function onMoveTaskLeft(task) {
 
 function onMoveTaskRight(task) {
   props.onMoveTask(task, props.groupId, props.groupId + 1);
+}
+
+function onRemoveTaskFromList(task) {
+  props.onRemoveTask(task, props.groupId);
 }
 </script>
 
@@ -31,6 +36,7 @@ function onMoveTaskRight(task) {
         :groups-length="groupsLength"
         :onMoveLeft="onMoveTaskLeft"
         :onMoveRight="onMoveTaskRight"
+        :onRemove="onRemoveTaskFromList"
       ></Task>
     </div>
   </div>

@@ -27,6 +27,10 @@ function moveTask(task, from, to) {
   taskLists.value[from] = taskLists.value[from].filter((t) => t !== task);
   taskLists.value[to].push(task);
 }
+
+function removeTask(task, from) {
+  taskLists.value[from] = taskLists.value[from].filter((t) => t !== task);
+}
 </script>
 
 <template>
@@ -46,6 +50,7 @@ function moveTask(task, from, to) {
         :group-name="groups[index].name"
         :groups-length="taskLists.length"
         :on-move-task="moveTask"
+        :on-remove-task="removeTask"
       />
     </div>
   </div>

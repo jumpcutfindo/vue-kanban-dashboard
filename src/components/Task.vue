@@ -5,6 +5,7 @@ const props = defineProps([
   "groupsLength",
   "onMoveLeft",
   "onMoveRight",
+  "onRemove",
 ]);
 const emits = defineEmits(["update:modelValue", "onMoveLeft", "onMoveRight"]);
 </script>
@@ -15,7 +16,7 @@ const emits = defineEmits(["update:modelValue", "onMoveLeft", "onMoveRight"]);
     <div class="flex flex-row">
       <div class="flex flex-row space-x-4">
         <button
-          class="text-blue-400 disabled:text-gray-300"
+          class="text-gray-400 disabled:text-gray-300 hover:text-green-500"
           :disabled="groupId <= 0"
           @click="onMoveLeft(modelValue)"
         >
@@ -25,7 +26,7 @@ const emits = defineEmits(["update:modelValue", "onMoveLeft", "onMoveRight"]);
           ></font-awesome-icon>
         </button>
         <button
-          class="text-blue-400 disabled:text-gray-300"
+          class="text-gray-400 disabled:text-gray-300 hover:text-green-500"
           :disabled="groupId >= groupsLength - 1"
           @click="onMoveRight(modelValue)"
         >
@@ -36,7 +37,10 @@ const emits = defineEmits(["update:modelValue", "onMoveLeft", "onMoveRight"]);
         </button>
       </div>
       <div class="flex flex-grow justify-end">
-        <button class="text-red-500 disabled:text-gray-300">
+        <button
+          class="text-gray-400 disabled:text-gray-300 hover:text-red-500"
+          @click="onRemove(modelValue)"
+        >
           <font-awesome-icon icon="fas fa-times-circle"></font-awesome-icon>
         </button>
       </div>
