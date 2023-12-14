@@ -1,9 +1,9 @@
 <script setup>
-import { ref } from "vue";
+import { ref, reactive } from "vue";
 import TaskInput from "./TaskInput.vue";
 import TaskList from "./TaskList.vue";
 
-const tasks = ref([
+const tasks = reactive([
   { groupId: 0, name: "Buy groceries for the team" },
   { groupId: 1, name: "Review Starfield on Steam" },
 ]);
@@ -14,6 +14,11 @@ const groups = ref([
   { id: 2, name: "Blocked" },
   { id: 3, name: "Complete" },
 ]);
+
+function addTask(task) {
+  console.log(task);
+  tasks.push({ groupId: 0, name: task });
+}
 </script>
 
 <template>
@@ -22,7 +27,7 @@ const groups = ref([
       <h1 class="text-3xl font-semibold">Vue Kanban Dashboard</h1>
     </div>
     <div class="flex flex-col min-w-full">
-      <TaskInput />
+      <TaskInput :on-add-task="addTask" />
     </div>
     <div class="flex flex-row flex-grow min-w-full justify-between space-x-4">
       <TaskList
