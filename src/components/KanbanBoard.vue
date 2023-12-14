@@ -3,12 +3,6 @@ import { ref, reactive } from "vue";
 import TaskInput from "./TaskInput.vue";
 import TaskList from "./TaskList.vue";
 
-const tasks = reactive([
-  { groupId: 0, name: "Buy groceries for the team" },
-  { groupId: 1, name: "Review Starfield on Steam" },
-  { groupId: 3, name: "Cook lunch for dinner" },
-]);
-
 const groups = ref([
   { id: 0, name: "To Do" },
   { id: 1, name: "In Progress" },
@@ -16,8 +10,22 @@ const groups = ref([
   { id: 3, name: "Complete" },
 ]);
 
-function addTask(task) {
-  tasks.push({ groupId: 0, name: task });
+const taskLists = ref([
+  [{ name: "Buy groceries for the team" }],
+  [{ name: "Review Starfield on Steam" }],
+  [],
+  [{ name: "Cook lunch for dinner" }],
+]);
+
+function addTask(name) {
+  taskLists.value[0].push({ name });
+}
+
+function moveTask(task, from, to) {
+  if (to < 0 || to >= taskLists.length) return;
+
+  taskLists.value[from] = taskLists.value[from].filter((t) => t !== task);
+  taskLists.value[to].push(task);
 }
 </script>
 
@@ -31,11 +39,13 @@ function addTask(task) {
     </div>
     <div class="flex flex-row flex-grow min-w-full justify-between space-x-4">
       <TaskList
-        v-bind:key="group.id"
-        v-for="group in groups"
-        :group-name="group.name"
-        :groups-length="groups.length"
-        :tasks="tasks.filter((t) => t.groupId === group.id)"
+        v-for="(taskList, index) in taskLists"
+        v-bind:key="index"
+        v-model="taskLists[index]"
+        :group-id="index"
+        :group-name="groups[index].name"
+        :groups-length="taskLists.length"
+        :on-move-task="moveTask"
       />
     </div>
   </div>
